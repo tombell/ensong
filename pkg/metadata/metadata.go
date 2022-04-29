@@ -1,8 +1,8 @@
 package metadata
 
 import (
-	"errors"
 	"fmt"
+	"path/filepath"
 	"strings"
 	"time"
 
@@ -10,45 +10,66 @@ import (
 )
 
 type Metadata struct {
-	cfg      *config.Config
-	filename string
-	date     *time.Time
+	cfg *config.Config
 
+	Date *time.Time
 	Tags []string
 }
 
 func New(cfg *config.Config, filename string) (*Metadata, error) {
-	parts := strings.Split(filename, "|")
+	file := strings.TrimSuffix(filepath.Base(filename), filepath.Ext(filename))
+	parts := strings.Split(file, "|")
 
 	date, err := time.Parse("2006-01-02", parts[0])
 	if err != nil {
 		return nil, fmt.Errorf("time parse failed: %w", err)
 	}
 
-	meta := &Metadata{
-		cfg:      cfg,
-		filename: filename,
-		date:     &date,
-
-		Tags: parts[1:],
-	}
-
-	return meta, nil
+	return &Metadata{cfg, &date, parts[1:]}, nil
 }
 
-func (m Metadata) Name() (string, error) {
+func (m Metadata) Name() string {
 	var name string
 
-	switch m.date.Weekday() {
+	switch m.Date.Weekday() {
+	case time.Monday:
+		name += m.cfg.Metadata.Names.Monday
+	case time.Tuesday:
+		name += m.cfg.Metadata.Names.Tuesday
+	case time.Wednesday:
+		name += m.cfg.Metadata.Names.Wednesday
+	case time.Thursday:
+		name += m.cfg.Metadata.Names.Thursday
 	case time.Friday:
-		name += "IAMDJRIFF pres. The Weekend Warmup"
-	case time.Saturday, time.Sunday:
-		name += "IAMDJRIFF pres. The Weekender"
-	default:
-		return "", errors.New("unsupported day of the week")
+		name += m.cfg.Metadata.Names.Friday
+	case time.Saturday:
+		name += m.cfg.Metadata.Names.Saturday
+	case time.Sunday:
+		name += m.cfg.Metadata.Names.Sunday
 	}
 
-	name += fmt.Sprintf(" (%s)", m.date.Format("02/01/2006"))
+	name += fmt.Sprintf(" (%s)", m.Date.Format("02/01/2006"))
 
-	return name, nil
+	return name
+}
+
+func (m Metadata) Picture() string {
+	switch m.Date.Weekday() {
+	case time.Monday:
+		return m.cfg.Metadata.Pictures.Monday
+	case time.Tuesday:
+		return m.cfg.Metadata.Pictures.Tuesday
+	case time.Wednesday:
+		return m.cfg.Metadata.Pictures.Wednesday
+	case time.Thursday:
+		return m.cfg.Metadata.Pictures.Thursday
+	case time.Friday:
+		return m.cfg.Metadata.Pictures.Friday
+	case time.Saturday:
+		return m.cfg.Metadata.Pictures.Saturday
+	case time.Sunday:
+		return m.cfg.Metadata.Pictures.Sunday
+	default:
+		return ""
+	}
 }
