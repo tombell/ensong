@@ -3,36 +3,29 @@ package converter
 import (
 	"fmt"
 	"os/exec"
+	"path/filepath"
+	"strings"
 
 	"github.com/tombell/ensong/pkg/config"
 )
 
 type Converter struct {
-	cfg *config.Config
+	cfg      *config.Config
+	filepath string
 }
 
-func New(cfg *config.Config) *Converter {
-	return &Converter{cfg}
+func New(cfg *config.Config, filepath string) *Converter {
+	return &Converter{cfg, filepath}
 }
 
-func (c Converter) ToAIFF() (string, error) {
-	cmd := exec.Command("xld", "-f", "aif", "-o", "OUTPUT", "INPUT")
+func (c Converter) Convert(format string) (string, error) {
+	file := strings.TrimSuffix(c.filepath, filepath.Ext(c.filepath))
+	output := fmt.Sprintf("%s.%s", file, format)
 
-	err := cmd.Run()
-	if err != nil {
-		return "", fmt.Errorf("cmd run failed: %w", err)
+	cmd := exec.Command("xld", "-f", format, "-o", output, c.filepath)
+	if err := cmd.Run(); err != nil {
+		return "", fmt.Errorf("convert failed: %w", err)
 	}
 
-	return "OUTPUT", nil
-}
-
-func (c Converter) ToMP3() (string, error) {
-	cmd := exec.Command("xld", "-f", "mp3", "-o", "OUTPUT", "INPUT")
-
-	err := cmd.Run()
-	if err != nil {
-		return "", fmt.Errorf("cmd run failed: %w", err)
-	}
-
-	return "OUTPUT", nil
+	return output, nil
 }
