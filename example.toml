@@ -1,0 +1,39 @@
+directories = [
+  "/Users/tombell/Music/Tracklists",
+  "/Users/tombell/Music/Mixes",
+]
+
+backup = "/Users/tombell/Music/Backup"
+
+[metadata.names]
+monday = ""
+tuesday = ""
+wednesday = "IAMDJRIFF pres. The Midweek Mix Up"
+thursday = ""
+friday = "IAMDJRIFF pres. The Weekend Warmup"
+saturday = "IAMDJRIFF pres. The Weekender"
+sunday = "IAMDJRIFF pres. The Weekender"
+
+[metadata.pictures]
+monday = ""
+tuesday = ""
+wednesday = "the-midweek-mix-up.png"
+thursday = ""
+friday = "the-weekend-warmup.png"
+saturday = "the-weekender.png"
+sunday = "the-weekender.png"
+
+[mixcloud]
+token = "asdfasdfasdf"
+
+[github]
+token = "asdfasdfasdf"
+
+[github.repo]
+owner = "tombell"
+name = "tracklists"
+branch = "main"
+
+[github.committer]
+name = "Tom Bell"
+email = "tomb@tomb.io"
