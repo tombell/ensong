@@ -1,6 +1,7 @@
 package main
 
 import (
+	"flag"
 	"log"
 	"os"
 	"os/signal"
@@ -10,10 +11,14 @@ import (
 	"github.com/tombell/ensong/pkg/monitor"
 )
 
+var configPath = flag.String("config", "ensong.toml", "path to the configuration file")
+
 func main() {
 	logger := log.New(os.Stderr, "", log.LstdFlags)
 
-	cfg, err := config.Load("./ensong.toml")
+	flag.Parse()
+
+	cfg, err := config.Load(*configPath)
 	if err != nil {
 		logger.Fatalf("error: %s", err)
 	}
