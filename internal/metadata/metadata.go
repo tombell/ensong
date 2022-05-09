@@ -6,7 +6,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/tombell/ensong/pkg/config"
+	"github.com/tombell/ensong/internal/config"
 )
 
 type Metadata struct {

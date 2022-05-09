@@ -16,8 +16,8 @@ import (
 	"github.com/google/go-github/v42/github"
 	"golang.org/x/oauth2"
 
-	"github.com/tombell/ensong/pkg/config"
-	"github.com/tombell/ensong/pkg/metadata"
+	"github.com/tombell/ensong/internal/config"
+	"github.com/tombell/ensong/internal/metadata"
 )
 
 type Uploader struct {

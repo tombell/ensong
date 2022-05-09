@@ -6,7 +6,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/tombell/ensong/pkg/config"
+	"github.com/tombell/ensong/internal/config"
 )
 
 type Converter struct {

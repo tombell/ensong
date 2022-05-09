@@ -9,10 +9,10 @@ import (
 
 	"github.com/fsnotify/fsnotify"
 
-	"github.com/tombell/ensong/pkg/config"
-	"github.com/tombell/ensong/pkg/converter"
-	"github.com/tombell/ensong/pkg/metadata"
-	"github.com/tombell/ensong/pkg/uploader"
+	"github.com/tombell/ensong/internal/config"
+	"github.com/tombell/ensong/internal/converter"
+	"github.com/tombell/ensong/internal/metadata"
+	"github.com/tombell/ensong/internal/uploader"
 )
 
 type Monitor struct {

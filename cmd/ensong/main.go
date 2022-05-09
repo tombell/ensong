@@ -7,8 +7,8 @@ import (
 	"os/signal"
 	"syscall"
 
-	"github.com/tombell/ensong/pkg/config"
-	"github.com/tombell/ensong/pkg/monitor"
+	"github.com/tombell/ensong/internal/config"
+	"github.com/tombell/ensong/internal/monitor"
 )
 
 var configPath = flag.String("config", "ensong.toml", "path to the configuration file")
