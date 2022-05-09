@@ -14,6 +14,10 @@ adheres to [Semantic Versioning][semver].
 
 - Added flag to specify the path to the TOML configuration file
 
+### Changed
+
+- Moved packages into `internal` directory
+
 ## [0.1.0] - 2022-04-30
 
 ### Added
