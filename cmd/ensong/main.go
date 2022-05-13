@@ -11,9 +11,10 @@ import (
 	"github.com/tombell/ensong/internal/monitor"
 )
 
-var configPath = flag.String("config", "ensong.toml", "path to the configuration file")
-
 func main() {
+	home, _ := os.UserHomeDir()
+	configPath := flag.String("config", home+"/.config/ensong/ensong.toml", "path to the configuration file")
+
 	logger := log.New(os.Stderr, "", log.LstdFlags)
 
 	flag.Parse()
