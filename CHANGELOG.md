@@ -10,6 +10,8 @@ adheres to [Semantic Versioning][semver].
 
 ## [Unreleased]
 
+## [0.1.1] - 2022-05-13
+
 ### Added
 
 - Added flag to specify the path to the TOML configuration file
