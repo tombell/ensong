@@ -7,13 +7,15 @@ import (
 	"time"
 
 	"github.com/tombell/ensong/internal/config"
+	"github.com/tombell/ensong/internal/tracklists"
 )
 
 type Metadata struct {
 	cfg *config.Config
 
-	Date *time.Time
-	Tags []string
+	Date   *time.Time
+	Tags   []string
+	Tracks [][]string
 }
 
 func New(cfg *config.Config, filename string) (*Metadata, error) {
@@ -25,7 +27,14 @@ func New(cfg *config.Config, filename string) (*Metadata, error) {
 		return nil, fmt.Errorf("time parse failed: %w", err)
 	}
 
-	return &Metadata{cfg, &date, parts[1:]}, nil
+	tracklistFile := fmt.Sprintf("%s/%s.txt", filepath.Dir(filename), date.Format("2006-01-02"))
+
+	tracks, err := tracklists.Read(tracklistFile)
+	if err != nil {
+		return nil, fmt.Errorf("tracklist read failed: %w", err)
+	}
+
+	return &Metadata{cfg, &date, parts[1:], tracks}, nil
 }
 
 func (m Metadata) Name() string {
