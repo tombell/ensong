@@ -7,6 +7,7 @@ require (
 	github.com/google/go-github/v42 v42.0.0
 	github.com/pelletier/go-toml v1.9.5
 	golang.org/x/oauth2 v0.5.0
+	golang.org/x/text v0.7.0
 )
 
 require (
