@@ -48,8 +48,15 @@ func (u Uploader) UploadMix(path string, meta *metadata.Metadata) error {
 	picture, _ := w.CreateFormFile("picture", "file.png")
 	io.Copy(picture, f2)
 
+	w.WriteField("unlisted", "true")
+
 	for idx, tag := range meta.Tags {
 		w.WriteField(fmt.Sprintf("tags-%d-tag", idx), tag)
+	}
+
+	for idx, track := range meta.Tracks {
+		w.WriteField(fmt.Sprintf("sections-%d-artist", idx), track[1])
+		w.WriteField(fmt.Sprintf("sections-%d-song", idx), track[0])
 	}
 
 	url := fmt.Sprintf("https://api.mixcloud.com/upload/?access_token=%s", u.cfg.Mixcloud.Token)
