@@ -130,12 +130,5 @@ func (m Monitor) handleTracklist(name string) {
 		return
 	}
 
-	m.logger.Println("cleaning up files...")
-
-	if err := os.Remove(name); err != nil {
-		log.Printf("error: failed to remove file: %s", err)
-		return
-	}
-
 	m.logger.Printf("finished handling %s...\n", name)
 }
