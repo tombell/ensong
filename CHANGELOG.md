@@ -10,6 +10,16 @@ adheres to [Semantic Versioning][semver].
 
 ## [Unreleased]
 
+## [0.2.0] - 2023-03-03
+
+### Added
+
+- Added the ability to upload track list with Mixcloud upload
+
+### Changed
+
+- Changed the GitHub handler to not remove the track list file
+
 ## [0.1.2] - 2022-05-13
 
 ### Changed
