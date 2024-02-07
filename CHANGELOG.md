@@ -10,6 +10,10 @@ adheres to [Semantic Versioning][semver].
 
 ## [Unreleased]
 
+### Changed
+
+- Changed to the latest module versions
+
 ## [0.3.0] - 2024-01-03
 
 ### Changed
