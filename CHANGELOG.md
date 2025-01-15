@@ -5,10 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog][keep-a-changelog], and this project
 adheres to [Semantic Versioning][semver].
 
-[keep-a-changelog]: https://keepachangelog.com/en/1.0.0/
+[keep-a-changelog]: https://keepachangelog.com/en/1.1.0/
 [semver]: https://semver.org/spec/v2.0.0.html
 
 ## [Unreleased]
+
+### Changed
+
+- Changed to the latest module versions
 
 ## [0.4.0] - 2024-06-22
 
